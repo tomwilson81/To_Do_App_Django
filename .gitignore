@@ -1,0 +1,26 @@
+# .gitignore
+
+# Temporary files
+.#~
+*.*~
+~.#~
+/.#~
+.vscode*
+
+venv/
+Pipfile
+Pipfile.lock
+
+# databases
+db.*
+*.sqlite3
+.idea/
+
+#keys
+secrets.json
+secret.py
+
+#Mac
+.DS_Store
+
+__pycache__/
