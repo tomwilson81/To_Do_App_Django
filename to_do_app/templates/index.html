@@ -13,11 +13,42 @@
 
 <body>
 <div class="todo">
-    <h1 class="todo__header">Hello Django world</h1>
+    <h1 class="todo__header"> To Do App 📝 </h1>
 
+    <div class="card todo_headerContainer">
+        <p class="font-weight-bold"> What do you have to do today? 🔥 </p>
+        <form action="/add" method="post" class="todo__form">
+            <input type="text" placeholder="Write task here..." name="todoitem">
+            <input type="submit" class="btn btn-info" value="➕ Add Item">
+        </form>
+    </div>
 
+    <div class="todo__itemContainer">
+        <div class="card todo__innerItemContainer">
+            <h2 class="todo__itemHeader"> To Do's ⏰ </h2>
 
+            <ul class="todo__container">
+                <li class="todo__item">
+                    <p>Task 1</p>
+                    <a class="btn btn-outline-success" href="/complete"> Complete ➡️ </a>
+                    <a class="todo__close" href="/delete">❌</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card todo__innerItemContainer">
+            <h2 class="todo__itemHeader"> Done ✅ </h2>
+
+            <ul class="todo__container">
+                <li class="todo__item">
+                    <p>Done task</p>
+                    <a class="btn btn-outline-warning" href="/uncheck"> Undo ⬅ </a>
+                    <a class="todo__close" href="/delete">❌</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
 </div>
-
 </body>
 </html>
