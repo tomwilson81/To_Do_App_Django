@@ -17,36 +17,45 @@
 
     <div class="card todo_headerContainer">
         <p class="font-weight-bold"> What do you have to do today? 🔥 </p>
-        <form action="/add" method="post" class="todo__form">
+        <form action="{% url 'to_do_app:add' %}" method="post" class="todo__form">
+            {% csrf_token %}
             <input type="text" placeholder="Write task here..." name="todoitem">
             <input type="submit" class="btn btn-info" value="➕ Add Item">
         </form>
     </div>
 
     <div class="todo__itemContainer">
+        {% if incomplete %}
         <div class="card todo__innerItemContainer">
             <h2 class="todo__itemHeader"> To Do's ⏰ </h2>
 
             <ul class="todo__container">
+                {% for todo in incomplete %}
                 <li class="todo__item">
-                    <p>Task 1</p>
-                    <a class="btn btn-outline-success" href="/complete"> Complete ➡️ </a>
-                    <a class="todo__close" href="/delete">❌</a>
+                    <p>{{ todo.text }}</p>
+                    <a class="btn btn-outline-success" href="{% url 'to_do_app:complete' pk=todo.pk %}" name="complete"> Complete ➡️ </a>
+                    <a class="todo__close" href="{% url 'to_do_app:delete' pk=todo.pk %}">❌</a>
                 </li>
+                {% endfor %}
             </ul>
         </div>
+        {% endif %}
 
+        {% if complete %}
         <div class="card todo__innerItemContainer">
             <h2 class="todo__itemHeader"> Done ✅ </h2>
 
             <ul class="todo__container">
+                {% for todo in complete %}
                 <li class="todo__item">
-                    <p>Done task</p>
-                    <a class="btn btn-outline-warning" href="/uncheck"> Undo ⬅ </a>
-                    <a class="todo__close" href="/delete">❌</a>
+                    <p>{{ todo.text }}</p>
+                    <a class="btn btn-outline-warning" href="{% url 'to_do_app:undo' pk=todo.pk %}"> Undo ⬅ </a>
+                    <a class="todo__close" href="{% url 'to_do_app:delete' pk=todo.pk %}">❌</a>
                 </li>
+                {% endfor %}
             </ul>
         </div>
+        {% endif %}
 
     </div>
 </div>
